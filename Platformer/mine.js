@@ -19,35 +19,31 @@ h=parseInt(document.getElementById('canvas').getAttribute("height"));
 w=parseInt(document.getElementById('canvas').getAttribute("width"));
 
 
-var playerIm = new Image();
-var playerImW;
-var playerImH
-playerIm.onload = function(){
-playerImW = this.width;
-playerImH = this.height;
-};
-playerIm.src = "./assets/jigglewalk_0.gif";
+
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     width = 500,
     height = 200,
     player = {
-	x : width/2,
-  y : height - playerIm.width,
-  width : 32,
-  height : 32,
+  x : width/2,
+  y : height - 5,
+  width : 5,
+  height : 5,
   speed: 3,
   velX: 0,
   velY: 0,
   jumping: false,
-    grounded: false
+    grounded: false,
+    image: "./assets/jigglewalk_0.gif"
     },
     gravity = 0.3,
     friction= 0.8;
     var boxes = [];
     var background = new Image();
     background.src = "./assets/back2.jpg";
-    
+    var playerIm = new Image();
+    playerIm.src = player.image;
+
  
 // dimensions
 
@@ -79,8 +75,8 @@ boxes.push({
     height: 80
 });
 boxes.push({
-    x: 170,
-    y: 50,
+    x: 10,
+    y: 90,
     width: 80,
     height: 80
 });
@@ -91,7 +87,7 @@ boxes.push({
     height: 80
 });
 boxes.push({
-    x: 270,
+    x: 350,
     y: 150,
     width: 40,
     height: 40
@@ -162,7 +158,7 @@ document.addEventListener('keyup', function(event) {
 
 
 function reload(){
-	location.reload();
+  location.reload();
 }
 
 
@@ -178,21 +174,21 @@ for (var i = 0; i < boxes.length; i++) {
 }
  
   ctx.fill();
-  //ctx.fillStyle = "red";
-  //ctx.fillRect(player.x, player.y, player.width, player.height);
-  ctx.drawImage(playerIm,player.x,player.y);
+  ctx.fillStyle = "red";
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+  //ctx.drawImage(playerIm,player.x,player.y);
 }
 
 
 
 
 Game.update=function(){
-	if(rightPressed && player.velX < player.speed){	                       
+  if(rightPressed && player.velX < player.speed){                        
            player.velX++;                  
        } 
 
     if(leftPressed && player.velX > -player.speed){
-	                       //console.log("se actualiza");
+                         //console.log("se actualiza");
             player.velX--;                 
        } 
        if(upPressed && !player.jumping && player.grounded){
@@ -201,7 +197,7 @@ Game.update=function(){
         player.velY = -player.speed * 2;
   }
 
-	player.velX *= friction;
+  player.velX *= friction;
  
     player.velY += gravity;
  
@@ -232,13 +228,13 @@ for (var i = 0; i < boxes.length; i++) {
             player.grounded = true;
             player.jumping = false;
             player.y = Math.ceil(player.y-res.offset);
-	   
+     
             //player.y = boxes[i].y-player.height;
                        // console.log("por abajo");
-	//console.log("por abajo");
+  console.log("por abajo");
         } else if (res.direction === "t") {
             player.velY *= -1;
-	//console.log(res.offset);
+  //console.log(res.offset);
                         console.log("por top");
             ///player.y = boxes[i].y+boxes[i].height;
             player.y = player.y+res.offset;
@@ -248,10 +244,10 @@ for (var i = 0; i < boxes.length; i++) {
 }
 }
 
-	  if(player.grounded){
+    if(player.grounded){
          player.velY = 0;
     }
-	//console.log("update");
+  //console.log("update");
 
     // run through the loop again
     
@@ -290,23 +286,22 @@ function collision(elem1, elem2){
     yIn= Math.ceil(hHalf - Math.abs(vY));
     if(yIn>=xIn){
         if(vX<0){
-          	result.direction = "r";
-          	result.offset = xIn;
+            result.direction = "r";
+            result.offset = xIn;
         }else{
          result.direction = "l";
-    	result.offset = xIn;
+      result.offset = xIn;
         }
      }else{ 
         if( vY<0){
       result.direction = "b";
-  	  result.offset = yIn;
+      result.offset = yIn;
       }else{
         result.direction = "t";
-  	     result.offset = yIn;
+         result.offset = yIn;
       }
   }
 }
     return result;
 }
-
 
