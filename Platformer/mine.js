@@ -19,31 +19,35 @@ h=parseInt(document.getElementById('canvas').getAttribute("height"));
 w=parseInt(document.getElementById('canvas').getAttribute("width"));
 
 
-
+var playerIm = new Image();
+var playerImW;
+var playerImH
+playerIm.onload = function(){
+playerImW = this.width;
+playerImH = this.height;
+};
+playerIm.src = "./assets/jigglewalk_0.gif";
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     width = 500,
     height = 200,
     player = {
 	x : width/2,
-  y : height - 5,
-  width : 5,
-  height : 5,
+  y : height - playerIm.width,
+  width : 32,
+  height : 32,
   speed: 3,
   velX: 0,
   velY: 0,
   jumping: false,
-    grounded: false,
-    image: "./assets/jigglewalk_0.gif"
+    grounded: false
     },
     gravity = 0.3,
     friction= 0.8;
     var boxes = [];
     var background = new Image();
     background.src = "./assets/back2.jpg";
-    var playerIm = new Image();
-    playerIm.src = player.image;
-
+    
  
 // dimensions
 
@@ -174,9 +178,9 @@ for (var i = 0; i < boxes.length; i++) {
 }
  
   ctx.fill();
-  ctx.fillStyle = "red";
-  ctx.fillRect(player.x, player.y, player.width, player.height);
-  //ctx.drawImage(playerIm,player.x,player.y);
+  //ctx.fillStyle = "red";
+  //ctx.fillRect(player.x, player.y, player.width, player.height);
+  ctx.drawImage(playerIm,player.x,player.y);
 }
 
 
@@ -231,7 +235,7 @@ for (var i = 0; i < boxes.length; i++) {
 	   
             //player.y = boxes[i].y-player.height;
                        // console.log("por abajo");
-	console.log("por abajo");
+	//console.log("por abajo");
         } else if (res.direction === "t") {
             player.velY *= -1;
 	//console.log(res.offset);
