@@ -11,6 +11,10 @@ class Gold(Item):
         self.amount = amount
         Item.__init__(name = "Gold", description="Booty!!", value = self.amount)
 
+class Screwdriver(Item):
+    def __init__(self):
+        Item.__init__(name="Screwdriver", description="It's Kaylee's tools...", value = 0)
+
 class Weapon(Item):
     def __init__(self, damage):
         self.damage = damage
