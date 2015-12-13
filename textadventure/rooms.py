@@ -1,6 +1,7 @@
-import items, enemies
+from items import Gun, Credits
 
-class MapTile():
+
+class MapTile:
     def __init__(self, x, y):
         self.x = x
         self.y = y
