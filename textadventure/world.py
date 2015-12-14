@@ -18,4 +18,4 @@ def load_map():
             _world[(x, y)] = None if tile_name == '' else getattr(__import__('rooms'), tile_name)(x, y)
 
 load_map()
-print _world
+#print _world

@@ -6,6 +6,7 @@ class Player:
         self.health = 100
         self.inventory = [Credits(30), Gun()]
         self.locationX, self.locationY = world.starting_position
+        self.end = False
     def __str__(self):
         return "{}\n=====\n{}\nValue: {}\n".format(self.name, self.description, self.value)
     def isAlive(self):
@@ -13,7 +14,7 @@ class Player:
     def hasItemInInventory(self, itemName):
         for item in self.inventory:
             if item.name == itemName:
-                return True
+                return item
     def printInventory(self):
         for item in self.inventory:
             print(item, '\n')
@@ -31,9 +32,13 @@ class Player:
 
     def attack(self, weapon, enemy):
         if hasItemInInventory(weapon.name):
-
+            enemy.health -= hasItemInInventory(weapon.name).damage
+        if enemy.isAlive():
+            print("{} HAHA, I have {} health left!!!").format(enemy.name, enemy.health)
+        else:
+            print "Ugggfhhhh...."
 
 
 player = Player("Odin")
-print player.hasItemInInventory("Gun")
+print player.hasItemInInventory("Gun").damage
 print player.isAlive()
