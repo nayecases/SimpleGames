@@ -39,6 +39,6 @@ class Player:
             print "Ugggfhhhh...."
 
 
-player = Player("Odin")
-print player.hasItemInInventory("Gun").damage
-print player.isAlive()
+#player = Player("Odin")
+#print player.hasItemInInventory("Gun").damage
+#print player.isAlive()

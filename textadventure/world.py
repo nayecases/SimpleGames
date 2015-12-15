@@ -17,5 +17,8 @@ def load_map():
                 starting_position = (x, y)
             _world[(x, y)] = None if tile_name == '' else getattr(__import__('rooms'), tile_name)(x, y)
 
-load_map()
+#load_map()
 #print _world
+
+def room_exists(cx, cy):
+    return _world.get(cx, cy)
