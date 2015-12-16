@@ -1,5 +1,10 @@
 import player
 
+
+
+commands = {'north':north, 'south':south, 'east':east, 'west':weast}
+
+
 class Command:
     def __init__(self, method, name, shortcut, **kwargs):
         self.method = method
