@@ -17,7 +17,7 @@ class Player:
                 return item
     def printInventory(self):
         for item in self.inventory:
-            print(item, '\n')
+            return item
     def move(self, dirx, diry):
         self.locationX +=dirx
         self.locationY +=diry
@@ -39,6 +39,6 @@ class Player:
             print "Ugggfhhhh...."
 
 
-#player = Player("Odin")
-#print player.hasItemInInventory("Gun").damage
+player = Player("Odin")
+print player.hasItemInInventory("Gun").damage
 #print player.isAlive()

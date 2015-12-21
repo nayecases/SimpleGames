@@ -33,4 +33,4 @@ class Gun(Weapon):
         Weapon.__init__(self, name = "Gun", description = "..It's a gun", value=0, damage = 30)
 
 #print Credits( 20)
-#print Gun()
+print Gun()
