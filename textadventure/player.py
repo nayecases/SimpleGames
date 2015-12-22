@@ -17,10 +17,10 @@ class Player:
                 return item
     def printInventory(self):
         for item in self.inventory:
-            return item
-    def move(self, dirx, diry):
-        self.locationX +=dirx
-        self.locationY +=diry
+            print item
+    def move(self, dx, dy):
+        self.locationX +=dx
+        self.locationY +=dy
     def moveNorth(self):
         self.move(dx=0, dy=1)
     def moveSouth(self):

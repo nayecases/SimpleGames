@@ -13,6 +13,6 @@ def run():
         for key in commands:
             if re.match(key, userAction.upper()):
                 res = getattr(player, commands[key])()
-                print res
+                #print res
 
 run()
