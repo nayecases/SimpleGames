@@ -2,17 +2,24 @@ from player import Player
 import world, re
 
 
-commands = {'IS ALIVE': 'isAlive', 'INVENTORY': 'printInventory', 'N':'moveNorth', 'NORTH':'moveNorth', 'S':'moveSouth', 'SOUTH':'moveSouth', 'E':'moveEast', 'EAST':'moveEast', 'W':'moveWest', 'WEST':'moveWest', 'ATTACK' : 'attack' }
+commands = {r'\bALIVE\b': 'isAlive', r'\bINVENTORY\b': 'printInventory', r'\bN\b':'moveNorth', r'\bNORTH\b':'moveNorth', r'\bS\b':'moveSouth', r'\bSOUTH\b':'moveSouth', r'\bE\b':'moveEast', r'\bEAST\b':'moveEast', r'\bW\b':'moveWest', r'\bWEST\b':'moveWest',
+ r'\bATTACK\b' : 'attack', r'\bINSULT\b':'insult', r'\bWHERE\b':'whereAmI' }
 def run():
     world.load_map()
     player = Player("Odin")
     while not player.end:
         #print "Action:\n"
-        userAction = raw_input(":  ")
+        userActionRaw = raw_input(":  ")
+        userAction = userActionRaw.split(" ")
+        params= []
+        if len(userAction)>1:
+            params = userAction[1:]
         #if re.match("t", userAction):
         for key in commands:
-            if re.match(key, userAction.upper()):
-                res = getattr(player, commands[key])()
+            if re.match(key, userAction[0].upper()):
+                #print "pasa"
+                res = getattr(player, commands[key])(*params)
                 #print res
+
 
 run()

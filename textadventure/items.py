@@ -27,10 +27,15 @@ class Weapon(Item):
 
 class Rock(Weapon):
     def __init__(self):
-        Weapon.__init__(self, name = "Rock", description = "..It's a rock", value=0, damage = 5)
+        Weapon.__init__(self, name = "Rock", description = "... It's a rock", value=0, damage = 5)
 class Gun(Weapon):
     def __init__(self):
-        Weapon.__init__(self, name = "Gun", description = "..It's a gun", value=0, damage = 30)
+        Weapon.__init__(self, name = "Gun", description = "... It's a gun", value=0, damage = 30)
+
+class Toy(Item):
+    def __init__(self):
+        Item.__init__(self, name = "Dinosaurs", description="WAAARRRGGH", value = 1000)
+
 
 #print Credits( 20)
-print Gun()
+#print Gun()
