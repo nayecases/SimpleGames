@@ -36,9 +36,15 @@ class Player:
         for item in self.inventory:
             print item
     def move(self, dx, dy):
+
         self.locationX +=dx
         self.locationY +=dy
-        self.whereAmI()
+        if world.room_exists(self.locationX, self.locationY):
+            self.whereAmI()
+        else:
+            self.locationX -=dx
+            self.locationY -=dy
+            print """I can't go there!"""
     def moveNorth(self):
         self.move(dx=0, dy=1)
     def moveSouth(self):
@@ -48,11 +54,12 @@ class Player:
     def moveWest(self):
         self.move(dx=-1, dy=0)
     def whereAmI(self):
-        print "I'm in {}".format(room_exists(self.locationX, self.locationY).intro_text())
+        print world.room_exists(self.locationX, self.locationY).intro_text()
         #print "I'm in ({},{})".format(self.locationX, self.locationY)
     def insult(self):
         print insults[randint(0, len(insults)-1)]
-
+    def investigate(self):
+        print world.room_exists(self.locationX, self.locationY).extended_text()
     def attack(self, weapon, enemy):
         if hasItemInInventory(weapon.name):
             enemy.health -= hasItemInInventory(weapon.name).damage
