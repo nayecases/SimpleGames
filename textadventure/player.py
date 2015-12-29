@@ -60,6 +60,14 @@ class Player:
         print insults[randint(0, len(insults)-1)]
     def investigate(self):
         print world.room_exists(self.locationX, self.locationY).extended_text()
+    def take(self, item):
+        self.inventory.add(item)
+    def use(self, itemName):
+        item = self.hasItemInInventory(itemName)
+        if item:
+            print item
+        else:
+            print "I don't have that"
     def attack(self, weapon, enemy):
         if hasItemInInventory(weapon.name):
             enemy.health -= hasItemInInventory(weapon.name).damage
@@ -67,6 +75,8 @@ class Player:
             print("{} HAHA, I have {} health left!!!").format(enemy.name, enemy.health)
         else:
             print "Ugggfhhhh...."
+    def say (self, phrase):
+        print phrase
 
 
 #player = Player("Odin")

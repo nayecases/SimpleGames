@@ -22,7 +22,7 @@ class PilotCabin(MapTile):
         return """ It's the pilot cabin.. noone here, I should now better"""
     def extended_text(self):
         return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!!.
-                There is some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
+There is some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
     def modify_player(self):
         #No action on the player
         pass
@@ -38,8 +38,7 @@ class JaynesChamber(MapTile):
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
+
 
 class EngineRoom(MapTile):
     def __init__(self,x, y,  item):
@@ -78,8 +77,7 @@ class MalsChamber(MapTile):#TODO
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
+
 
 class ZoesNWashsChamber(MapTile):#TODO
     def __init__(self,x, y,  item):
@@ -92,8 +90,7 @@ class ZoesNWashsChamber(MapTile):#TODO
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
+
 
 class KayleesChamber(MapTile):#TODO
     def __init__(self,x, y,  item):
@@ -106,8 +103,7 @@ class KayleesChamber(MapTile):#TODO
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
+
 
 class dinningRoom(MapTile):#TODO
     def __init__(self,x, y,  item):
@@ -120,8 +116,7 @@ class dinningRoom(MapTile):#TODO
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
+
 
 class infirmary(MapTile):#TODO
     def __init__(self,x, y,  item):
@@ -130,23 +125,21 @@ class infirmary(MapTile):#TODO
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
     def extended_text(self):
-        return """The now useless motor lies cold, everything is half lit. There are some tools on the floor."""
+        return """The Doc patches us oh so many times in here, maybe there is something useful left in the cabinets. An adrenaline shot is left.
+I'll keep it... for a rainy day"""
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
 
-class cargoBay(MapTile): #TODO
+
+class cargoBay(MapTile):
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        #self.item = Screwdriver()
         MapTile.__init__(self, x , y)
     def intro_text(self):
-        return """ This is Kaylee's realm, beware thou who should pass..."""
+        return """ Cargo Bay, there is not much left, no jobs for now. Now it's just a big empty space, like a whale belly."""
     def extended_text(self):
-        return """The now useless motor lies cold, everything is half lit. There are some tools on the floor."""
+        return """"""
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
