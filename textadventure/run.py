@@ -1,21 +1,30 @@
 from player import Player
 import world, re, time
 
-timer = 0
+
 player = Player("Mal")
-exchange = False
-commands = {r'\bALIVE\b': 'isAlive', r'\bINVENTORY\b': 'printInventory', r'\bN\b':'moveNorth', r'\bNORTH\b':'moveNorth', r'\bS\b':'moveSouth', r'\bSOUTH\b':'moveSouth', r'\bE\b':'moveEast', r'\bEAST\b':'moveEast', r'\bW\b':'moveWest', r'\bWEST\b':'moveWest',
- r'\bATTACK\b' : 'attack', r'\bINSULT\b':'insult', r'\bWHERE\b':'whereAmI', r'\bINVESTIGATE\b':'investigate', r'\bUSE\b':'use' }
+
+runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "pressedButton": False}
+
+runText = {"introduction": "bla bla"} #It's better in a separated file
+
+commands = {r'\bALIVE\b': 'isAlive', r'\bINVENTORY\b': 'printInventory', r'\bN\b':'moveNorth', r'\bNORTH\b':'moveNorth', r'\bS\b':'moveSouth', r'\bSOUTH\b':'moveSouth', r'\bE\b':'moveEast', r'\bEAST\b':'moveEast',
+r'\bW\b':'moveWest', r'\bWEST\b':'moveWest', r'\bATTACK\b' : 'attack', r'\bINSULT\b':'insult', r'\bWHERE\b':'whereAmI', r'\bINVESTIGATE\b':'investigate', r'\bUSE\b':'use', r'\bTAKE\b':'take',
+ r'\bSURRENDER\b':'surrender', r'\bHELP\b':'help' }
+
 def run():
     world.load_map()
-    global exchange
+    global runTime
     global player
+    global runText
+    print runText["introduction"]
+    player.whereAmI()
     while not player.end:
         #print "Action:\n"
         getInput(True)
-        player.checkIfEnded()
+        checkIfEnded()
                 #print res
-        if timer > 2 and not exchange:
+        if runTime.get("timer") > 2 and not runTime.get("exchange"):
             print """There is someone calling"""
             player.locationX = 0
             player.locationY = 0
@@ -56,12 +65,13 @@ my people on the other side."""
 I feel like maybe we can do business."""
             time.sleep(2)
             print """(Better go to the cargo bay to receive our guests...)"""
-            exchange = True
+            runTime["exchange"] = True
+
 
 
 
 def getInput(ext):
-    global timer
+    global runTime
     global player
     userActionRaw = raw_input(":  ")
     userAction = userActionRaw.split(" ")
@@ -71,7 +81,15 @@ def getInput(ext):
     #if re.match("t", userAction):
     for key in commands:
         if re.match(key, userAction[0].upper()) and ext:
-            timer +=1
+            runTime["timer"] +=1
             #print "pasa"
             res = getattr(player, commands[key])(*params)
+
+def checkIfEnded():
+    global player
+    global runTime
+    if runTime.get("usedCatalyzer") and runTime.get("pressedButton"):
+        player.end = True
+
+
 run()

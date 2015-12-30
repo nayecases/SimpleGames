@@ -18,6 +18,8 @@ class MapTile:
 class PilotCabin(MapTile):
     def __init__(self, x, y):
         MapTile.__init__(self, x , y)
+        self.bigRedButton = False
+        self.item = Toy()
     def intro_text(self):
         return """ It's the pilot cabin.. noone here, I should now better"""
     def extended_text(self):
@@ -43,6 +45,7 @@ class JaynesChamber(MapTile):
 class EngineRoom(MapTile):
     def __init__(self,x, y,  item):
         self.item = Screwdriver()
+        self.usedCatalyzer = False
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
@@ -51,8 +54,7 @@ class EngineRoom(MapTile):
     def modify_player(self):
         #No action on the player
         pass
-    def add_item(self, player, item):
-        player.inventory.add(item)
+
 
 class EmptyCorridor(MapTile):
     extended = ["My steps echoes down the corridor... It reminds me, everybody dies alone","THE HERO OF CANTON, THE MAN THE CALL JAAAAYNE *sings while walking down the corridor*","I wonder... What is like the 'special' hell? *Scratches chin while walking down the corridor*"]
@@ -107,7 +109,7 @@ class KayleesChamber(MapTile):#TODO
 
 class dinningRoom(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        self.item = Cake()
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
@@ -120,13 +122,13 @@ class dinningRoom(MapTile):#TODO
 
 class infirmary(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        self.item = Adrenaline()
         MapTile.__init__(self, x , y)
     def intro_text(self):
-        return """ This is Kaylee's realm, beware thou who should pass..."""
+        return """ The irfirmary, there still are some of the stuff used on Zoe..."""
     def extended_text(self):
-        return """The Doc patches us oh so many times in here, maybe there is something useful left in the cabinets. An adrenaline shot is left.
-I'll keep it... for a rainy day"""
+        return """The Doc patched us oh so many times in here, maybe there is something useful left in the cabinets. An adrenaline shot is left.
+I should keep it... for a rainy day"""
     def modify_player(self):
         #No action on the player
         pass
@@ -139,7 +141,7 @@ class cargoBay(MapTile):
     def intro_text(self):
         return """ Cargo Bay, there is not much left, no jobs for now. Now it's just a big empty space, like a whale belly."""
     def extended_text(self):
-        return """"""
+        return """There are some boxes left, nothing special, the jeep is under its blanquet... a couple of weigths that Jayne uses..."""
     def modify_player(self):
         #No action on the player
         pass

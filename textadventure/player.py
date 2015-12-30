@@ -1,5 +1,6 @@
 from items import Gun, Credits
 from random import randint
+
 import world
 
 insults = ["Shun-SHENG duh gao-WAHN (Holy Testicle Tuesday)", "Da-shiang bao-tza shr duh lah doo-tze (The Explosive Diarrhea of an Elephant)",
@@ -62,7 +63,7 @@ class Player:
         print world.room_exists(self.locationX, self.locationY).extended_text()
     def take(self, item):
         self.inventory.add(item)
-    def use(self, itemName):
+    def use(self, itemName): #TODO
         item = self.hasItemInInventory(itemName)
         if item:
             print item
@@ -77,6 +78,19 @@ class Player:
             print "Ugggfhhhh...."
     def say (self, phrase):
         print phrase
+    def take(self, item):
+        room = world.room_exists(self.locationX, self.locationY)
+        if room.item.name == item :
+            self.inventory.append(room.item)
+            print """I now have """ + room.item.name
+        else:
+            print self.insult + """ , I can't take that!"""
+    def surrender(self):
+        print """I give up..."""
+        exit()
+    def help(self): #TODO
+        print "help"
+
 
 
 #player = Player("Odin")

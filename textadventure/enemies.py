@@ -11,6 +11,6 @@ class Enemy():
 class Reaver(Enemy):
     def __init__(self):
         Enemy.__init__(self, name = "Reaver", description="Human that stared into the void...", health= 100, damage=20)
-class Alien(Enemy):
+class Captain(Enemy):
     def __init__(self):
-        Enemy.__init__(self, name = "Alien", description="Big black thing", health= 200, damage=40)
+        Enemy.__init__(self, name = "Captain", description="Ching-wah TSAO duh liou mahng that was supposed to help you", health= 50, damage=40)
