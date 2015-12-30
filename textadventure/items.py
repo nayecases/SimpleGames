@@ -36,6 +36,9 @@ class Toy(Item):
     def __init__(self):
         Item.__init__(self, name = "Dinosaurs", description="WAAARRRGGH", value = 1000)
 
+class Cake(Item): #TODO
+class Adrenaline(Item): #TODO
+
 
 #print Credits( 20)
 #print Gun()
