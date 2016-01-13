@@ -1,4 +1,4 @@
-from items import Gun, Credits
+from items import Gun, Credits, Toy
 from random import randint
 
 

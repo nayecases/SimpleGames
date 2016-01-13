@@ -37,7 +37,12 @@ class Toy(Item):
         Item.__init__(self, name = "Dinosaurs", description="WAAARRRGGH", value = 1000)
 
 class Cake(Item): #TODO
+    def __init__(self):
+        Item.__init__(self, name = "Cake", description="It's a lie...", value = 5)
+
 class Adrenaline(Item): #TODO
+    def __init__(self):
+        Item.__init__(self, name = "Adrenaline shot", description="A syringe with a big damn adrenaline dosis", value = 10)
 
 
 #print Credits( 20)
