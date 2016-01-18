@@ -37,7 +37,6 @@ class Player:
         for item in self.inventory:
             print item
     def move(self, dx, dy):
-
         self.locationX +=dx
         self.locationY +=dy
         if world.room_exists(self.locationX, self.locationY):
@@ -57,16 +56,18 @@ class Player:
     def whereAmI(self):
         print world.room_exists(self.locationX, self.locationY).intro_text()
         #print "I'm in ({},{})".format(self.locationX, self.locationY)
+    def room(self):
+        return world.room_exists(self.locationX, self.locationY)
     def insult(self):
         print insults[randint(0, len(insults)-1)]
     def investigate(self):
         print world.room_exists(self.locationX, self.locationY).extended_text()
-    def take(self, item):
-        self.inventory.add(item)
+
     def use(self, itemName): #TODO
         item = self.hasItemInInventory(itemName)
         if item:
-            print item
+            #print item
+            if item.specialRoom # HAY QUE HACERLO
         else:
             print "I don't have that"
     def attack(self, weapon, enemy):
@@ -81,7 +82,10 @@ class Player:
     def take(self, item):
         room = world.room_exists(self.locationX, self.locationY)
         if room.item.name == item :
-            self.inventory.append(room.item)
+            if not self.hasItemInInventory(item):
+                self.inventory.append(room.item)
+            elif:
+                print 'I can\'t take more of that'
             print """I now have """ + room.item.name
         else:
             print self.insult + """ , I can't take that!"""
@@ -89,7 +93,7 @@ class Player:
         print """I give up..."""
         exit()
     def help(self): #TODO
-        print "help"
+        print "NOOB"
 
 
 
