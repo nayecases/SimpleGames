@@ -18,20 +18,23 @@ class MapTile:
 class PilotCabin(MapTile):
     def __init__(self, x, y):
         MapTile.__init__(self, x , y)
-        self.bigRedButton = False
-        self.item = Toy()
+        self.item = Toy(self)
     def intro_text(self):
         return """ It's the pilot cabin.. noone here, I should now better"""
     def extended_text(self):
         return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!!.
 There is some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
-    def modify_player(self):
-        #No action on the player
-        pass
+    def modify_player(self, player):
+        if player.runTime["usedCatalyzer"]:
+            player.runTime["bigDamnRedButton"] = True
+            player.runTime["end"] = True
+            return """I... did it... I fi... *crumbles*"""
+        else:
+            return """Not yet, I can't call them only to bring them death."""
 
 class JaynesChamber(MapTile):
     def __init__(self, x, y):
-        self.item = Gun()
+        self.item = Gun(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ It's Jane's room. FAY-FAY duh PEE-yen... it smells!"""
@@ -44,7 +47,7 @@ class JaynesChamber(MapTile):
 
 class EngineRoom(MapTile):
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        self.item = Screwdriver(self)
         self.usedCatalyzer = False
         MapTile.__init__(self, x , y)
     def intro_text(self):
@@ -70,7 +73,7 @@ class EmptyCorridor(MapTile):
 
 class MalsChamber(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        self.item = Screwdriver(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
@@ -83,7 +86,7 @@ class MalsChamber(MapTile):#TODO
 
 class ZoesNWashsChamber(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        self.item = Screwdriver(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
@@ -96,7 +99,7 @@ class ZoesNWashsChamber(MapTile):#TODO
 
 class KayleesChamber(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Screwdriver()
+        self.item = Screwdriver(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
@@ -107,9 +110,9 @@ class KayleesChamber(MapTile):#TODO
         pass
 
 
-class dinningRoom(MapTile):#TODO
+class DinningRoom(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Cake()
+        self.item = Cake(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ This is Kaylee's realm, beware thou who should pass..."""
@@ -120,9 +123,9 @@ class dinningRoom(MapTile):#TODO
         pass
 
 
-class infirmary(MapTile):#TODO
+class Infirmary(MapTile):#TODO
     def __init__(self,x, y,  item):
-        self.item = Adrenaline()
+        self.item = Adrenaline(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
         return """ The irfirmary, there still are some of the stuff used on Zoe..."""
@@ -134,7 +137,7 @@ I should keep it... for a rainy day"""
         pass
 
 
-class cargoBay(MapTile):
+class CargoBay(MapTile):
     def __init__(self,x, y,  item):
         #self.item = Screwdriver()
         MapTile.__init__(self, x , y)

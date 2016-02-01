@@ -17,11 +17,12 @@ insults = ["Shun-SHENG duh gao-WAHN (Holy Testicle Tuesday)", "Da-shiang bao-tza
 
 class Player:
     def __init__(self, name):
+        self.runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "bigDamnRedButton": False, "error" : "I don\'t understand that", "roundsTilCapt" : 3, "secDialog": 1, "end": False}
         self.name = name
         self.health = 100
-        self.inventory = [Credits(30), Gun()]
+        self.inventory = [Credits(30, specialRoom = None), Gun(specialRoom = None)]
         self.locationX, self.locationY = world.starting_position
-        self.end = False
+
     def __str__(self):
         return "{}\n=====\n{}\nValue: {}\n".format(self.name)
     def isAlive(self):
@@ -66,8 +67,7 @@ class Player:
     def use(self, itemName): #TODO
         item = self.hasItemInInventory(itemName)
         if item:
-            #print item
-            if item.specialRoom # HAY QUE HACERLO
+            item.modifyPlayer()
         else:
             print "I don't have that"
     def attack(self, weapon, enemy):
@@ -84,7 +84,7 @@ class Player:
         if room.item.name == item :
             if not self.hasItemInInventory(item):
                 self.inventory.append(room.item)
-            elif:
+            else:
                 print 'I can\'t take more of that'
             print """I now have """ + room.item.name
         else:
