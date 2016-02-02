@@ -39,7 +39,7 @@ class JaynesChamber(MapTile):
     def intro_text(self):
         return """ It's Jane's room. FAY-FAY duh PEE-yen... it smells!"""
     def extended_text(self):
-        return """Just a regular chamber, a small bed, an old hat, a rack full of weapons... the usual."""
+        return """Just a regular chamber, a small bed, an old hat, a rack full of guns... the usual. """
     def modify_player(self):
         #No action on the player
         pass

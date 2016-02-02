@@ -81,12 +81,13 @@ class Player:
         print phrase
     def take(self, item):
         room = world.room_exists(self.locationX, self.locationY)
-        if room.item.name == item :
+        if room.item.name.upper() == item.upper() :
             if not self.hasItemInInventory(item):
                 self.inventory.append(room.item)
+                print """I now have """ + room.item.name
             else:
                 print 'I can\'t take more of that'
-            print """I now have """ + room.item.name
+
         else:
             print self.insult + """ , I can't take that!"""
     def surrender(self):
