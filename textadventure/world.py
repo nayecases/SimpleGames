@@ -4,12 +4,13 @@ starting_position = (0, 0)
 def load_map():
     with open('resources/serenity.txt', 'r') as map:
         rows = map.readlines()
-    x_max = len(rows[0].split('\t'))+1
 
+    #x_max = len(rows[2].split())
+    #print range(x_max)
     for y in range(len(rows)):
         cols = rows[y].split()
 
-        for x in range(x_max):
+        for x in range(len(cols)):
 
             tile_name = cols[x].replace('\n', '')
             if tile_name == 'PilotCabin':
@@ -24,4 +25,5 @@ load_map()
 def room_exists(cx, cy):
     return _world.get((cx, cy))
 
-#print room_exists(6,1)
+#print room_exists(3,1)
+#print _world

@@ -1,2 +1,3 @@
 PilotCabin EmptyCorridor
-EmptyCorridor JaynesChamber
+EmptyCorridor JaynesChamber ZoesNWashsChamber MalsChamber KayleesChamber
+EmptyCorridor EmptyCorridor DinningRoom Infirmary EngineRoom  CargoBay

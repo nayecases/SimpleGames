@@ -17,7 +17,7 @@ insults = ["Shun-SHENG duh gao-WAHN (Holy Testicle Tuesday)", "Da-shiang bao-tza
 
 class Player:
     def __init__(self, name):
-        self.runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "bigDamnRedButton": False, "error" : "I don\'t understand that", "roundsTilCapt" : 3, "secDialog": 1, "end": False}
+        self.runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "bigDamnRedButton": False, "error" : "I don\'t understand that", "roundsTilCapt" : 50, "secDialog": 1, "end": False}
         self.name = name
         self.health = 100
         self.inventory = [Credits(30, specialRoom = None), Gun(specialRoom = None)]
