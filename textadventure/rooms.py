@@ -89,9 +89,9 @@ class ZoesNWashsChamber(MapTile):#TODO
         #self.item = Screwdriver(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
-        return """ This is Kaylee's realm, beware thou who should pass..."""
+        return """ This is Zoe's n Wash's room. There are some snacs, and some clothes, and.. wh..what is that?!! Liou coe shway duh biao-tze huh hoe-tze duh ur-tze.... I don't need to look anymore. """
     def extended_text(self):
-        return """The now useless motor lies cold, everything is half lit. There are some tools on the floor."""
+        return """I SAID I DON'T NEED TO SEE MORE!!!"""
     def modify_player(self):
         #No action on the player
         pass
