@@ -1,5 +1,6 @@
 from items import Gun, Credits, Toy, Screwdriver, Cake, Adrenaline
 from random import randint
+from utils.colors_terminal import Colors_terminal
 
 
 class MapTile:
@@ -22,8 +23,7 @@ class PilotCabin(MapTile):
     def intro_text(self):
         return """ It's the pilot cabin.. noone here, I should now better"""
     def extended_text(self):
-        return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!!.
-There is some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
+        return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!! I've always loved this """ + Colors_terminal.ITEM +"""Toy  """ + Colors_terminal.NORMAL + """There are some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
     def modify_player(self, player):
         if player.runTime["usedCatalyzer"]:
             player.runTime["bigDamnRedButton"] = True
@@ -84,7 +84,7 @@ class MalsChamber(MapTile):#TODO
         pass
 
 
-class ZoesNWashsChamber(MapTile):#TODO
+class ZoesNWashsChamber(MapTile):
     def __init__(self,x, y):
         #self.item = Screwdriver(self)
         MapTile.__init__(self, x , y)
@@ -102,22 +102,22 @@ class KayleesChamber(MapTile):#TODO
         self.item = Screwdriver(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
-        return """ This is Kaylee's realm, beware thou who should pass..."""
+        return """ This is Kaylee's room. Some old photographs and a half eaten strawberries bowl."""
     def extended_text(self):
-        return """The now useless motor lies cold, everything is half lit. There are some tools on the floor."""
+        return """That's Kaylee's favorite dress, She was so happy that day..."""
     def modify_player(self):
         #No action on the player
         pass
 
 
-class DinningRoom(MapTile):#TODO
+class DinningRoom(MapTile):
     def __init__(self,x, y):
         self.item = Cake(self)
         MapTile.__init__(self, x , y)
     def intro_text(self):
-        return """ This is Kaylee's realm, beware thou who should pass..."""
+        return """ There is noone here, It's even clean - almost -"""
     def extended_text(self):
-        return """The now useless motor lies cold, everything is half lit. There are some tools on the floor."""
+        return """There is some Cake left"""
     def modify_player(self):
         #No action on the player
         pass
@@ -130,7 +130,7 @@ class Infirmary(MapTile):#TODO
     def intro_text(self):
         return """ The irfirmary, there still are some of the stuff used on Zoe..."""
     def extended_text(self):
-        return """The Doc patched us oh so many times in here, maybe there is something useful left in the cabinets. An adrenaline shot is left.
+        return """The Doc patched us oh so many times in here, maybe there is something useful left in the cabinets. An Adrenaline shot is left.
 I should keep it... for a rainy day"""
     def modify_player(self):
         #No action on the player
