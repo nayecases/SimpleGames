@@ -5,13 +5,13 @@ import world, re, time
 player = Player("Mal")
 
 
-runText = {"introduction": "bla bla"} #It's better in a separated file
+runText = {"introduction": "I can't believe I'm in this situation. Everything was going so well... I guess we were walking on eggshells. Now I'm here all alone, the crew left an hour ago. I'm just waiting for someone to pass by and maybe, lent my a hand. Ican't wait here any longer, it's driving me crazy. I should look around..."} #It's better in a separated file
 
 
 
 commands = {r'\bALIVE\b': 'isAlive', r'\bINVENTORY\b': 'printInventory', r'\bN\b':'moveNorth', r'\bNORTH\b':'moveNorth', r'\bS\b':'moveSouth', r'\bSOUTH\b':'moveSouth', r'\bE\b':'moveEast', r'\bEAST\b':'moveEast',
 r'\bW\b':'moveWest', r'\bWEST\b':'moveWest', r'\bATTACK\b' : 'attack', r'\bINSULT\b':'insult', r'\bWHERE\b':'whereAmI', r'\bINVESTIGATE\b':'investigate', r'\bUSE\b':'use', r'\bTAKE\b':'take',
- r'\bSURRENDER\b':'surrender', r'\bHELP\b':'help' }
+ r'\bSURRENDER\b':'surrender', r'\bHELP\b':'help', r'\bSTATUS\b':'status' }
 
 captainConv=[
     """There is someone calling. Better check it out, I'm in the pilot cabin... Hello?\n CAPTAIN - Firefly Serenity... This is the private salvage

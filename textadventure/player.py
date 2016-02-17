@@ -24,7 +24,7 @@ class Player:
         self.locationX, self.locationY = world.starting_position
 
     def __str__(self):
-        return "{}\n=====\n{}\nValue: {}\n".format(self.name)
+        return "\nName: {}, health: {}\n".format(self.name, self.health)
     def isAlive(self):
         if self.health > 0:
             print "All good so far"
@@ -74,7 +74,7 @@ class Player:
         if hasItemInInventory(weapon.name):
             enemy.health -= hasItemInInventory(weapon.name).damage
         if enemy.isAlive():
-            print("{} HAHA, I have {} health left!!!").format(enemy.name, enemy.health)
+            print("\n{} HAHA, I have {} health left!!!\n").format(enemy.name, enemy.health)
         else:
             print "Ugggfhhhh...."
     def say (self, phrase):
@@ -95,6 +95,8 @@ class Player:
         exit()
     def help(self): #TODO
         print "NOOB"
+    def status(self):
+        print self
 
 
 
