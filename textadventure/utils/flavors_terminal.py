@@ -1,9 +1,10 @@
 
 
 class Flavors_terminal:
-    ITEM = '\033[92m'
-    WHITE = '\033[0m'
-    MAL =
-    CAPTAIN =
-    ITALIC = '\x1B[3m'
-    ITALIC_END = '\x1B[23m'
+    GREEN = '\033[92m'
+    GREY = '\033[37m'
+    RED = '\033[91m'
+    ITALIC = '\033[3m'
+    BOLD = '\033[1m'
+    ENDC = '\033[0m'
+    ERROR = '\033[33m'

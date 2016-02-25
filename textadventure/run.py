@@ -1,4 +1,5 @@
 from player import Player
+from utils.flavors_terminal import Flavors_terminal as term
 import world, re, time
 
 
@@ -78,7 +79,7 @@ def getInput(ext):
             try:
                 res = getattr(player, commands[key])(*params)
             except TypeError:
-                print player.runTime.get("error") + "," + " that's not how that's used..."
+                print term.ERROR + player.runTime.get("error") + "," + " that's not how that's used..." + term.ENDC
     if not found and ext:
         print player.runTime.get("error")
 
