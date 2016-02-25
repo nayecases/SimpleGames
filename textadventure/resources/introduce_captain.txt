@@ -1,0 +1,12 @@
+CAPTAIN - Firefly Serenity... This is the private salvage S.S. Walden. Receiving your distress beacon, do you read?
+MAL - Yes! I... need your help.
+CAPTAIN - Right. Your mechanical trouble. Compression coil, you say?
+MAL - It was the catalyzer.
+CAPTAIN - Not even the coil? Catalyzer's a nothing part, Captain.
+MAL - It's nothing till you don't got one. Then it appears to be everything.
+CAPTAIN - It is possible we might have something that'd do you. We just come from a big salvage job off Ita Moon. Picked the bones'a half a dozen junk heaps not unlike the one you're sittin' in.I suppose we could dock, take a look around, see if there ain't some way we might come to terms.
+MAL - I'd appreciate it.
+CAPTAIN - Trouble is... how can I know for certain your story's true? Ambush could be waiting for me and my people on the other side.
+MAL -You can plainly see my shuttles've been launched, just like I said. And by now you've scanned me. You know I got no life support.
+CAPTAIN - (smiles) I feel like maybe we can do business.
+MAL - (Better go to the cargo bay to receive our guests...)
