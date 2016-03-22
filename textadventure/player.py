@@ -1,5 +1,6 @@
 from items import Gun, Credits
 from random import randint
+from utils.flavors_terminal import Flavors_terminal as fla
 
 import world
 
@@ -27,9 +28,9 @@ class Player:
         return "\nName: {}, health: {}\n".format(self.name, self.health)
     def isAlive(self):
         if self.health > 0:
-            print "All good so far"
+            mal_speaks("All good so far")
         else:
-            print "... tell my mother I love her"
+            mal_speaks("... tell my mother I love her")
     def hasItemInInventory(self, itemName):
         for item in self.inventory:
             if item.name == itemName:
@@ -45,7 +46,7 @@ class Player:
         else:
             self.locationX -=dx
             self.locationY -=dy
-            print """I can't go there!"""
+            mal_speaks("""I can't go there!""")
     def moveNorth(self):
         self.move(dx=0, dy=1)
     def moveSouth(self):
@@ -60,16 +61,16 @@ class Player:
     def room(self):
         return world.room_exists(self.locationX, self.locationY)
     def insult(self):
-        print insults[randint(0, len(insults)-1)]
+        mal_speaks(insults[randint(0, len(insults)-1)])
     def investigate(self):
-        print world.room_exists(self.locationX, self.locationY).extended_text()
+        mal_speaks(world.room_exists(self.locationX, self.locationY).extended_text())
 
     def use(self, itemName): #TODO
         item = self.hasItemInInventory(itemName)
         if item:
             item.modifyPlayer()
         else:
-            print "I don't have that"
+            mal_speaks("I don't have that")
     def attack(self, weapon, enemy):
         if hasItemInInventory(weapon.name):
             enemy.health -= hasItemInInventory(weapon.name).damage
@@ -78,27 +79,27 @@ class Player:
         else:
             print "Ugggfhhhh...."
     def say (self, phrase):
-        print phrase
+        mal_speaks(phrase)
     def take(self, item):
         room = world.room_exists(self.locationX, self.locationY)
         if room.item.name.upper() == item.upper() :
             if not self.hasItemInInventory(item):
                 self.inventory.append(room.item)
-                print """I now have """ + room.item.name
+                mal_speaks("""I now have """ + room.item.name)
             else:
-                print 'I can\'t take more of that'
+                mal_speaks('I can\'t take more of that')
 
         else:
-            print self.insult + """ , I can't take that!"""
+            mal_speaks(self.insult + """ , I can't take that!""")
     def surrender(self):
-        print """I give up..."""
+        mal_speaks("""I give up...""")
         exit()
     def help(self): #TODO
-        print "NOOB"
+        mal_speaks("NOOB")
     def status(self):
         print self
-
-
+def mal_speaks(line):
+    print fla.GREY + line +fla.ENDC
 
 #player = Player("Odin")
 #print player.hasItemInInventory("Gun").damage

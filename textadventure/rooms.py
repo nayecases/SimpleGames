@@ -23,7 +23,7 @@ class PilotCabin(MapTile):
     def intro_text(self):
         return """ It's the pilot cabin.. noone here, I should now better"""
     def extended_text(self):
-        return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!! I've always loved this """ + Colors_terminal.ITEM +"""Toy  """ + Colors_terminal.NORMAL + """There are some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
+        return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!! I've always loved this Toy There are some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
     def modify_player(self, player):
         if player.runTime["usedCatalyzer"]:
             player.runTime["bigDamnRedButton"] = True

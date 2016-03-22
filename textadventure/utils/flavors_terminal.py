@@ -8,3 +8,4 @@ class Flavors_terminal:
     BOLD = '\033[1m'
     ENDC = '\033[0m'
     ERROR = '\033[33m'
+    PURPLE = '\033[94m'

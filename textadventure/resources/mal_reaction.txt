@@ -1,5 +1,5 @@
-MAL - Jesse, don't call Stern. Billy, leave the catalyzer.
-CAPTAIN - Do as he says.
-MAL - Take your people and go.
-CAPTAIN - You would have done the same.
-MAL - We can already see I haven't. Now get the hell off my ship.
+y - MAL - Jesse, don't call Stern. Billy, leave the catalyzer.
+r - CAPTAIN - Do as he says.
+y - MAL - Take your people and go.
+r - CAPTAIN - You would have done the same.
+y - MAL - We can already see I haven't. Now get the hell off my ship.
