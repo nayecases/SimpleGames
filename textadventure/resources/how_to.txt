@@ -1,0 +1,8 @@
+i - ITALIC
+y - GREY (MAL)
+z - GREY ITALIC (MAL THOUGHTS)
+n - NORMAL
+r - RED (CAPTAIN)
+b - BOLD
+g - GREEN (ITEM)
+p - PURPLE(NPC)
