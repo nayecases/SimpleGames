@@ -12,4 +12,4 @@ class Command:
         self.shortcut = shortcut
         self.kwargs = kwargs
     def __str__(self):
-        print("Action: {} shortcut: {}").format(self.name, self.shortcut)
+        print "Action: {} shortcut: {}").format(self.name, self.shortcut)

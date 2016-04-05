@@ -1,7 +1,8 @@
 from player import Player
 from utils.flavors_terminal import Flavors_terminal as term
 from utils.read_text_file import read_firefly
-import world, re, time
+from utils.custom_timer import CustomTimer as ct
+import world, re, time, threading
 
 
 player = Player("Mal")
@@ -14,20 +15,24 @@ r'\bW\b':'moveWest', r'\bWEST\b':'moveWest', r'\bATTACK\b' : 'attack', r'\bINSUL
 
 
 def run():
+    #Loads initial resources
     world.load_map()
-
     global player
     global runText
-        
+
+    #First intructions to player
     for l in read_firefly(text_file['intro']):
         print l
 
     player.whereAmI()
+
+    #Start cycle
     while not player.runTime.get("end"):
         #print "Action:\n"
         getInput(True)
         checkIfEnded()
-                #print res
+
+        #Checks if reached mid-game
         if player.runTime.get("timer") > player.runTime.get("roundsTilCapt") and not player.runTime.get("exchange"):
             player.locationX = 0
             player.locationY = 0
@@ -35,12 +40,15 @@ def run():
                 print text
                 time.sleep(player.runTime.get("secDialog"))
                 getInput(False)
-
             player.runTime["exchange"] = True
 
+        if player.runTime['exchange']:
+            loose_health()
 
-
-
+def loose_health():
+    threading.Timer(5.0, loose_health).start()
+    print " "
+    #aqui poner que pierde vida
 
 def getInput(ext):
 
