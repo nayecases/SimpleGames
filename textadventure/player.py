@@ -7,7 +7,7 @@ import world
 
 class Player:
     def __init__(self, name):
-        self.runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "bigDamnRedButton": False, "error" : "I don\'t understand that", "roundsTilCapt" : 10, "secDialog": 1, "end": False, "insults":"resources/insults.txt"}
+        self.runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "bigDamnRedButton": False, "error" : "I don\'t understand that", "roundsTilCapt" : 10, "secDialog": 1, "end": False, "insults":"resources/insults.txt", "cries":"resources/agony_cries.txt"}
         self.name = name
         self.health = 100
         self.inventory = [Credits(30, specialRoom = None), Gun(specialRoom = None)]
@@ -88,7 +88,7 @@ class Player:
     def status(self):
         print self
     def cry(self):
-        print self
+        print read.read_random_line(self.runTime['cries'])
 
 
 

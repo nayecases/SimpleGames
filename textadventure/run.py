@@ -45,10 +45,16 @@ def run():
         if player.runTime['exchange']:
             loose_health()
 
+    if player.runTime["result"]:
+        for line in read_firefly(text_file['end']): print line
+    else:
+        player.surrender()
+
 def loose_health():
-    threading.Timer(5.0, loose_health).start()
-    print " "
-    #aqui poner que pierde vida
+    threading.Timer(10.0, loose_health).start()
+    player.cry()
+    player.health = player.health - 1
+
 
 def getInput(ext):
 
@@ -78,7 +84,10 @@ def checkIfEnded():
     global player
     if player.runTime.get("usedCatalyzer") and player.runTime.get("pressedButton"):
         player.runTime["end"] = True
-
+        player.runTime["result"] = True
+    elif player.health <=0 :
+        player.runTime["end"] = True
+        player.runTime["result"] = False
 
 
 run()
