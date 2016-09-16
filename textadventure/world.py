@@ -25,5 +25,5 @@ load_map()
 def room_exists(cx, cy):
     return _world.get((cx, cy))
 
-#print room_exists(3,1)
+print room_exists(3,1).__class__.__name__
 #print _world

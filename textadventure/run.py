@@ -1,11 +1,11 @@
 from player import Player
-from utils.flavors_terminal import Flavors_terminal as term
+import utils.flavors_terminal as fla
 from utils.read_text_file import read_firefly
 from utils.custom_timer import CustomTimer as ct
-import world, re, time, threading
+import world, re, config, time
 
 
-player = Player("Mal")
+player = Player('Mal')
 
 text_file = {'cap_conv_2':'resources/captain_conv_shoot.txt','end':'resources/ending.txt','cap_conv_1':'resources/introduce_captain.txt','intro':'resources/introduction.txt','mal_react':'resources/mal_reaction.txt',}
 
@@ -21,39 +21,52 @@ def run():
     global runText
 
     #First intructions to player
-    for l in read_firefly(text_file['intro']):
-        print l
+    print_firefly_conv(text_file['intro'])
 
     player.whereAmI()
 
     #Start cycle
-    while not player.runTime.get("end"):
+    while not player.runTime.get("END"):
         #print "Action:\n"
         getInput(True)
-        checkIfEnded()
+
 
         #Checks if reached mid-game
-        if player.runTime.get("timer") > player.runTime.get("roundsTilCapt") and not player.runTime.get("exchange"):
-            player.locationX = 0
-            player.locationY = 0
-            for text in captainConv:
-                print text
-                time.sleep(player.runTime.get("secDialog"))
-                getInput(False)
-            player.runTime["exchange"] = True
+        if player.runTime.get("TIMER") > player.runTime.get("ROUNDS_TIL_CAP") and not player.runTime.get("EXCHANGE"):
+            print_firefly_conv(text_file['cap_conv_1'])
+            print fla.con_y('Better go to the Cargo Bay to receive our guests...')
+            #Comprobar que player esta en la bodega entonces exchange true
+            if room_exists(player.locationX,player.locationY).__class__.__name__ == 'CargoBay':
+                print_firefly_conv(text_file['cap_conv_2'])
+                player.runTime["EXCHANGE"] = True
+                if player.runTime["GUN"] :
+                    print_firefly_conv(text_file['mal_react'])
+                else:
+                    player.health = 0
 
-        if player.runTime['exchange']:
+        if player.runTime['EXCHANGE']:
             loose_health()
 
-    if player.runTime["result"]:
+        checkIfEnded()
+
+
+    if player.runTime["RESULT"]:
         for line in read_firefly(text_file['end']): print line
     else:
+        print fla.con_gray('Sorry... I tried')
         player.surrender()
+        print "You collapse on the floor, forever drifting in space..."
 
 def loose_health():
-    threading.Timer(10.0, loose_health).start()
+    global player
     player.cry()
-    player.health = player.health - 1
+    player.health = player.health - 30
+
+def print_firefly_conv(file_path):
+    for text in read_firefly(file_path):
+        print text
+        time.sleep(player.runTime.get("DIALOG_SLEEP"))
+        getInput(False)
 
 
 def getInput(ext):
@@ -68,26 +81,26 @@ def getInput(ext):
     #if re.match("t", userAction):
     for key in commands:
         if re.match(key, userAction[0].upper()) and ext:
-            player.runTime["timer"] +=1
+            player.runTime["TIMER"] +=1
             found = True
             #print "pasa"
             try:
                 res = getattr(player, commands[key])(*params)
             except TypeError:
-                print term.ERROR + player.runTime.get("error") + "," + " that's not how that's used..." + term.ENDC
+                print fla.con_red( player.runTime.get("ERROR") + "," + " that's not how that's used...")
     if not found and ext:
-        print player.runTime.get("error")
+        print fla.con_gray(player.runTime.get("ERROR"))
 
 
 
 def checkIfEnded():
     global player
-    if player.runTime.get("usedCatalyzer") and player.runTime.get("pressedButton"):
-        player.runTime["end"] = True
-        player.runTime["result"] = True
+    if player.runTime.get("USED_CATALYZER") and player.runTime.get("BIG_DAMN_RED_BUTTON"):
+        player.runTime["END"] = True
+        player.runTime["RESULT"] = True
     elif player.health <=0 :
-        player.runTime["end"] = True
-        player.runTime["result"] = False
+        player.runTime["END"] = True
+        player.runTime["RESULT"] = False
 
 
 run()

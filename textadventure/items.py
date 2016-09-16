@@ -1,3 +1,5 @@
+from utils import flavors_terminal as fla
+
 class Item():
     def __init__(self, name, description, value,  specialRoom = None):
         self.value = value
@@ -15,14 +17,14 @@ class Credits(Item):
         self.specialRoom = specialRoom
         Item.__init__(self, specialRoom = specialRoom , name = "Credits", description="Booty!!", value = self.amount)
     def modifyPlayer(self, player):
-        return "My precious..."
+        return fla.con_gray("My precious...")
 
 class Screwdriver(Item):
     def __init__(self, specialRoom):
         Item.__init__(self, specialRoom = specialRoom, name="Screwdriver", description="It's Kaylee's tools...", value = 0)
     def modifyPlayer(self, player):
         if self.specialRoom == player.room().__class__.__name__:
-            print "Well, I guess I could try fixing it with this... No luck"
+            print fla.con_gray("Well, I guess I could try fixing it with this... No luck")
 class Weapon(Item):
     def __init__(self,  specialRoom, name, description, value, damage):
         self.damage = damage
@@ -37,6 +39,9 @@ class Rock(Weapon):
 class Gun(Weapon):
     def __init__(self, specialRoom):
         Weapon.__init__(self, specialRoom = specialRoom,  name = "Gun", description = "... It's a gun", value=0, damage = 30)
+        def modifyPlayer(self, player):
+            if room_exists(player.locationX,player.locationY).__class__.__name__ == 'CargoBay' and player.runTime['EXCHANGE']:
+                player.runTime['GUN'] = True
 
 class Toy(Item):
     def __init__(self, specialRoom):
@@ -47,18 +52,21 @@ class Cake(Item): #TODO
         self.specialRoom = specialRoom
         Item.__init__(self, specialRoom = specialRoom , name = "Cake", description="It's a lie...", value = 5)
 
-class Adrenaline(Item): #TODO
+class Adrenaline(Item):
     def __init__(self, specialRoom):
         self.specialRoom = specialRoom
         Item.__init__(self, specialRoom = specialRoom , name = "Adrenaline shot", description="A syringe with a big damn adrenaline dosis", value = 10)
+    def modifyPlayer(self, player):
+        if player.health<80: player.health = player.health +20
+        elif player.health<100: player.health = 100
 
 class Catalyzer(Item):
     def __init__(self):
         Item.__init__(self, specialRoom = "EngineRoom", name="Screwdriver", description="It's Kaylee's tools...", value = 0)
     def modifyPlayer(self, player):
         if self.specialRoom == player.room().__class__.__name__:
-            player.runTime["usedCatalyzer"] = True
-            print "Finally, it is fixed! Hooray!"
+            player.runTime["USER_CATALYZER"] = True
+            print fla.con_gray("Finally, it is fixed! Hooray!")
 
 
 #print Credits( 20)

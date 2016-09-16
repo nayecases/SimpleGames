@@ -25,9 +25,9 @@ class PilotCabin(MapTile):
     def extended_text(self):
         return """I look into the black abiss that peeks at me through the wide windows * Sigh *... Oh, look! Wash's dinosaurs!! I've always loved this Toy There are some buttons that are lit up, an old blanquet and the special button that Wash prepared"""
     def modify_player(self, player):
-        if player.runTime["usedCatalyzer"]:
-            player.runTime["bigDamnRedButton"] = True
-            player.runTime["end"] = True
+        if player.runTime["USED_CATALYZER"]:
+            player.runTime["BIG_DAMN_RED_BUTTON"] = True
+            player.runTime["END"] = True
             return """I... did it... I fi... *crumbles*"""
         else:
             return """Not yet, I can't call them only to bring them death."""

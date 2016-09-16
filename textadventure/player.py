@@ -2,13 +2,13 @@ from items import Gun, Credits
 from random import randint
 import utils.flavors_terminal as fla
 import utils.read_text_file as read
-import world
+import world, config
 
 
 class Player:
     def __init__(self, name):
-        self.runTime = { "timer":0, "exchange": False, "usedCatalyzer": False, "bigDamnRedButton": False, "error" : "I don\'t understand that", "roundsTilCapt" : 10, "secDialog": 1, "end": False, "insults":"resources/insults.txt", "cries":"resources/agony_cries.txt"}
-        self.name = name
+        self.runTime = config.RUN_TIME
+        self.name = config.RUN_TIME['NAME']
         self.health = 100
         self.inventory = [Credits(30, specialRoom = None), Gun(specialRoom = None)]
         self.locationX, self.locationY = world.starting_position
@@ -50,7 +50,7 @@ class Player:
     def room(self):
         return world.room_exists(self.locationX, self.locationY)
     def insult(self):
-        print read.read_random_line(self.runTime['insults'])
+        print read.read_random_line(self.runTime['INSULTS'])
     def investigate(self):
         print fla.con_gray(world.room_exists(self.locationX, self.locationY).extended_text())
 
@@ -88,7 +88,7 @@ class Player:
     def status(self):
         print self
     def cry(self):
-        print read.read_random_line(self.runTime['cries'])
+        print read.read_random_line(self.runTime['CRIES'])
 
 
 
